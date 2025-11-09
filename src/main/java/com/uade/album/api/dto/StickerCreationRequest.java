@@ -1,13 +1,24 @@
 package com.uade.album.api.dto;
 
-import com.uade.album.domain.model.Rarity;
+import com.uade.album.domain.model.TipoRareza;
+
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
 public class StickerCreationRequest {
-    private String name;
-    private Rarity rarity;
-    
-    private String imageUrl;
-    private String description;
+
+    @NotBlank
+    private String nombre;
+
+    @Min(1)
+    private int numero;
+    private String seccion;
+
+    private String rareza;
+    private Integer stockTotal;
+
+    @NotBlank
+    private String imagenUrl;
 }

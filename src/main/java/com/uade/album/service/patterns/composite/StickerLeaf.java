@@ -1,54 +1,38 @@
 package com.uade.album.service.patterns.composite;
 
 import com.uade.album.domain.model.Sticker;
-import lombok.Data;
 import java.util.Collections;
 import java.util.List;
 
-// Representa la parte individual (la figurita).
-@Data
-public class StickerLeaf implements CompositeComponent {
+public class StickerLeaf implements AlbumComponent {
 
-    private final Sticker sticker;
+    private Sticker sticker;
 
     public StickerLeaf(Sticker sticker) {
         this.sticker = sticker;
     }
 
     @Override
-    public String getName() {
-        return sticker.getName();
+    public String getNombre() {
+        return sticker.getNombre();
     }
 
     @Override
-    public Long getId() {
-        return sticker.getId();
-    }
-  //a revisar
-    // Los métodos para manipular hijos están vacíos, ya que es una hoja.
-    @Override
-    public void add(CompositeComponent component) {
-        // No aplica a una hoja
+    public int getTotalStickers() {
+        return 1; 
     }
 
     @Override
-    public void remove(CompositeComponent component) {
-        // No aplica a una hoja
+    public String getTipo() {
+        return "STICKER";
     }
 
     @Override
-    public List<CompositeComponent> getChildren() {
-        return Collections.emptyList();
+    public List<AlbumComponent> getChildren() {
+        return Collections.emptyList(); // No tiene hijos
     }
 
-    // Método propio del diagrama
-    public Long getStickerId() {
-        return sticker.getId();
-    }
-    
-  
-    // Método 'addAlbumComponent' del diagrama (no tiene sentido en la hoja, pero se respeta)
-    public void addAlbumComponent(CompositeComponent component) { 
-        // No aplica a una hoja
+    public Sticker getStickerData() {
+        return sticker;
     }
 }

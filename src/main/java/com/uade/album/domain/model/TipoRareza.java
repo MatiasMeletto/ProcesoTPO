@@ -1,6 +1,6 @@
 package com.uade.album.domain.model;
 
-public enum Rarity {
+public enum TipoRareza {
     COMUN,
     RARA,
     EPICA
