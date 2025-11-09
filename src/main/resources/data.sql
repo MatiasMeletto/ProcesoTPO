@@ -15,7 +15,7 @@ TRUNCATE TABLE albums;
 -- -----------------------------------------------------
 INSERT INTO albums (id, titulo, descripcion, categoria, dificultad, total_figuritas, publicado) 
 VALUES 
-(1, 'Copa América 2024', 'Álbum oficial del torneo Conmebol', 'Deportes', 2, 0, true);
+(1, 'Copa América 2024', 'Álbum oficial del torneo Conmebol', 'Deportes', 2, 0, false);
 
 -- Stickers para el Álbum 1
 INSERT INTO stickers (album_id, nombre, numero, imagen_url, seccion, rareza, stock_total, stock_disponible) 
@@ -33,7 +33,7 @@ UPDATE albums SET total_figuritas = 4 WHERE id = 1;
 -- -----------------------------------------------------
 INSERT INTO albums (id, titulo, descripcion, categoria, dificultad, total_figuritas, publicado) 
 VALUES 
-(2, 'Mundial 2026 (Fácil)', 'Versión de prueba con figuritas fáciles', 'Deportes', 0, 0, true);
+(2, 'Mundial 2026 (Fácil)', 'Versión de prueba con figuritas fáciles', 'Deportes', 0, 0, false);
 -- Dejamos este álbum vacío a propósito para que puedas probar a AÑADIRLE figuritas con el POST.
 -- Al añadirlas, notarás que la "uniformStrategy" genera muchas Raras y Épicas.
 
@@ -43,7 +43,7 @@ VALUES
 -- -----------------------------------------------------
 INSERT INTO albums (id, titulo, descripcion, categoria, dificultad, total_figuritas, publicado) 
 VALUES 
-(3, 'Álbum Manual (Admin)', 'Prueba de carga manual con rarezas predefinidas', 'Test', 1, 0, true);
+(3, 'Álbum Manual (Admin)', 'Prueba de carga manual con rarezas predefinidas', 'Test', 1, 0, false);
 
 -- Stickers para el Álbum 3 (demuestra el caso de tu JSON de ejemplo)
 INSERT INTO stickers (album_id, nombre, numero, imagen_url, seccion, rareza, stock_total, stock_disponible) 
