@@ -1,4 +1,3 @@
-// Ruta: com/uade/album/service/patterns/strategy/WeightedRarityStrategy.java
 package com.uade.album.service.patterns.strategy;
 
 import com.uade.album.api.dto.StickerCreationRequest;

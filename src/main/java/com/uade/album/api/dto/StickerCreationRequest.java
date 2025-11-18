@@ -16,6 +16,7 @@ public class StickerCreationRequest {
     private int numero;
     private String seccion;
 
+    // Rareza y stock son opcionales al crear una figurita
     private TipoRareza rareza;
     private Integer stockTotal;
 

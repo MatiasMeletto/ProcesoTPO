@@ -9,9 +9,9 @@ import java.util.Random;
 @Component("uniformStrategy") 
 public class AsignacionUniforme implements IRarezaAsignacionStrategy {
 
-    private static final int STOCK_EPIC = 50;
+    private static final int STOCK_EPIC = 100;
     private static final int STOCK_RARE = 150;
-    private static final int STOCK_COMMON = 500;
+    private static final int STOCK_COMMON = 200;
     
     private final Random rand = new Random();
 
