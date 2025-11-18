@@ -14,9 +14,9 @@ public class AsignacionPredefinida implements IRarezaAsignacionStrategy {
         TipoRareza rareza;
         int stock;
 
-        if (request.getRareza() != null && !request.getRareza().isBlank()) {
+        if (request.getRareza() != null && !request.getRareza().toString().isBlank()) {
             try {
-                rareza = TipoRareza.valueOf(request.getRareza().toUpperCase());
+                rareza = TipoRareza.valueOf(request.getRareza().toString().toUpperCase());
             } catch (IllegalArgumentException e) {
                 rareza = TipoRareza.COMUN;
             }

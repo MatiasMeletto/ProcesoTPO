@@ -16,7 +16,7 @@ public class StickerCreationRequest {
     private int numero;
     private String seccion;
 
-    private String rareza;
+    private TipoRareza rareza;
     private Integer stockTotal;
 
     @NotBlank

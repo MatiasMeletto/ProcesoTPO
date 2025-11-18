@@ -1,7 +1,9 @@
 package com.uade.album.service;
 
 import com.uade.album.api.dto.AlbumCreationRequest;
+import com.uade.album.api.dto.AlbumUpdateRequest;
 import com.uade.album.api.dto.StickerCreationRequest;
+import com.uade.album.api.dto.StickerUpdateRequest;
 import com.uade.album.domain.model.Album;
 import com.uade.album.domain.model.Sticker;
 import com.uade.album.domain.repository.AlbumRepository;
@@ -82,6 +84,17 @@ public class AlbumAdminService implements IAlbumAdminService {
     }
 
     @Override
+    public List<Album> getAllAlbums() {
+        return albumRepository.findAll();
+    }
+
+    @Override
+    public Album getAlbumById(Long albumId) {
+        return albumRepository.findById(albumId)
+                .orElseThrow(() -> new EntityNotFoundException("Álbum no encontrado con ID: " + albumId));
+    }
+
+    @Override
     public SectionComposite getAlbumStructure(Long albumId) {
         Album album = albumRepository.findById(albumId)
                 .orElseThrow(() -> new EntityNotFoundException("Álbum no encontrado"));
@@ -112,5 +125,57 @@ public class AlbumAdminService implements IAlbumAdminService {
             }
         }
         return albumRoot;
+    }
+
+    @Override
+    @Transactional
+    public Album updateAlbum(Long albumId, AlbumUpdateRequest request) {
+        Album album = getAlbumById(albumId); 
+        
+        if (album.isPublicado()) {
+            throw new IllegalStateException("No se puede modificar un álbum que ya está publicado.");
+        }
+
+        album.setTitulo(request.getTitulo());
+        album.setDescripcion(request.getDescripcion());
+        album.setCategoria(request.getCategoria());
+        album.setDificultad(request.getDificultad());
+
+        return albumRepository.save(album);
+    }
+
+    @Override
+    @Transactional
+    public Sticker updateSticker(Long stickerId, StickerUpdateRequest request) {
+        Sticker sticker = stickerRepository.findById(stickerId)
+                .orElseThrow(() -> new EntityNotFoundException("Figurita no encontrada con ID: " + stickerId));
+
+        sticker.setNombre(request.getNombre());
+        sticker.setImagenUrl(request.getImagenUrl());
+        sticker.setSeccion(request.getSeccion());
+
+        return stickerRepository.save(sticker);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAlbum(Long albumId) {
+        Album album = getAlbumById(albumId);
+        albumRepository.delete(album);
+    }
+
+    @Override
+    @Transactional
+    public void deleteSticker(Long stickerId) {
+        Sticker sticker = stickerRepository.findById(stickerId)
+                .orElseThrow(() -> new EntityNotFoundException("Figurita no encontrada con ID: " + stickerId));
+
+        Album album = sticker.getAlbum();
+        
+        stickerRepository.delete(sticker);
+        List<Sticker> remainingStickers = stickerRepository.findByAlbumId(album.getId());
+        album.setTotalFiguritas(remainingStickers.size());
+        
+        albumRepository.save(album);
     }
 }

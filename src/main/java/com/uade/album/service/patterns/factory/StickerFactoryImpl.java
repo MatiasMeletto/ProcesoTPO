@@ -1,12 +1,10 @@
-// Ruta: com/uade/album/service/StickerFactoryImpl.java
-package com.uade.album.service;
+package com.uade.album.service.patterns.factory;
 
 import com.uade.album.api.dto.StickerCreationRequest;
 import com.uade.album.domain.model.Album;
 import com.uade.album.domain.model.Dificultad;
 import com.uade.album.domain.model.Sticker;
-import com.uade.album.domain.repository.StickerRepository; 
-import com.uade.album.service.patterns.factory.IStickerFactory;
+import com.uade.album.domain.repository.StickerRepository;
 import com.uade.album.service.patterns.strategy.AssignmentResult; 
 import com.uade.album.service.patterns.strategy.IRarezaAsignacionStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
